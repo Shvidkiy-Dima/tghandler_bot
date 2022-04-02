@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+
+  django:
+    build:
+      context: .
+      dockerfile: compose/django/Dockerfile
+    depends_on:
+        - db
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.envs/.prod
+
+  bot:
+    build:
+      context: .
+      dockerfile: compose/bot/Dockerfile
+    depends_on:
+      - db
+      - django
+    restart: always
+    env_file:
+      - ./.envs/.prod
+
+  db:
+    hostname: db
+    image: kartoza/postgis
+    restart: always
+    volumes:
+      - ./postgres-data:/var/lib/postgresql
+    env_file:
+      - ./.envs/.prod
