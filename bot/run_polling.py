@@ -1,7 +1,7 @@
+import uuid
 import django, os
 import pathlib
 import sys
-import hashlib
 
 sys.path.append(str(pathlib.PosixPath(os.path.abspath(__file__)).parent.parent))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
@@ -45,7 +45,7 @@ class TelegramBot:
         with transaction.atomic():
             u, _ = User.update_or_create_user(update, context)
             u.is_stopped = False
-            u.code = hashlib.sha256().hexdigest()
+            u.code = uuid.uuid4()
             u.save(update_fields=['is_stopped', 'code'])
             update.message.reply_text(reply_text.start(u), parse_mode='MarkdownV2')
 
