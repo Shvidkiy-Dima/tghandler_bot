@@ -16,7 +16,7 @@ TG\_HANDLER\_HOST to
 {settings.HOST}
 ```
 
-And add tghandler.TGHandler to the MIDDLEWARE list
+And add tghandler\.TGHandler to the MIDDLEWARE list
             """
 
 
