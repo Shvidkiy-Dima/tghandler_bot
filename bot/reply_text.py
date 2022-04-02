@@ -12,7 +12,9 @@ Edit TG\_HANDLER\_CODE setting to
 
 TG\_HANDLER\_HOST to  
 
-`{settings.HOST}` 
+```
+{settings.HOST}
+```
 
 And add tghandler.TGHandler to the MIDDLEWARE list
             """
